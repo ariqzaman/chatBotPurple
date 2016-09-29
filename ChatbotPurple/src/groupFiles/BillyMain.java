@@ -9,9 +9,7 @@ public class BillyMain {
 		static boolean inLoop;
 		static String response;
 		static Topic hello;
-//		static Topic school;
-//		static Topic like;
-		//declare group classes
+		static Topic food;
 
 		public static void main(String[] args) {
 			createTopics();
@@ -39,6 +37,10 @@ public class BillyMain {
 				else if (hello.isTriggered(response)){
 					inLoop =false;//exits the loop
 					hello.talk();
+				}
+				else if (food.isTriggered(response)){
+					inLoop =false;//exits the loop
+					food.talk();
 				}
 				else
 					print("Im sorry i dont understand you");
@@ -147,6 +149,7 @@ public class BillyMain {
 
 		public static void createTopics() {
 			hello = new BillyHello();
+			food = new BillyFood();
 			//initialize topics
 
 		}
