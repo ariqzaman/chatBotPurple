@@ -8,6 +8,7 @@ public class BillyMain {
 		static String user;
 		static boolean inLoop;
 		static String response;
+		static Topic hello;
 //		static Topic school;
 //		static Topic like;
 		//declare group classes
@@ -34,6 +35,10 @@ public class BillyMain {
 				response = getInput();
 				if (findKeyword(response, "good", 0)>=0){
 					print("I'm so happy you're good");
+				}
+				else if (hello.isTriggered(response)){
+					inLoop =false;//exits the loop
+					hello.talk();
 				}
 				else
 					print("Im sorry i dont understand you");
@@ -141,6 +146,7 @@ public class BillyMain {
 
 
 		public static void createTopics() {
+			hello = new BillyHello();
 			//initialize topics
 
 		}
