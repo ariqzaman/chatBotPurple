@@ -9,6 +9,7 @@ public class BillyMain {
 		static boolean inLoop;
 		static String response;
 		static Topic fps;
+		static Topic ariq;
 
 		public static void main(String[] args) {
 			createTopics();
@@ -36,6 +37,10 @@ public class BillyMain {
 				if (fps.isTriggered(response)){
 					inLoop =false;//exits the loop
 					fps.talk();
+				}
+				else if (ariq.isTriggered(response)){
+					inLoop =false;//exits the loop
+					ariq.talk();
 				}
 				else
 					print("Im sorry i dont understand you");
@@ -130,6 +135,7 @@ public class BillyMain {
 		public static void createTopics() {
 			input = new Scanner(System.in);
 			fps = new BillyFpsType();
+			ariq = new AriqMultiplayer();
 			//initialize topics
 
 		}
