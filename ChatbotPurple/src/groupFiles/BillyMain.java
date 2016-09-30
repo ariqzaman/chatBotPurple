@@ -29,7 +29,7 @@ public class BillyMain {
 			while(inLoop){ //what ever is inside the while loop is true, it keeps running
 				//promptInput();
 				print("Greetings, "+user+". What kinds of games do you like??");
-//				response = getInput();
+				response = getInput();
 //				if (findKeyword(response, "good", 0)>=0){
 //					print("I'm so happy you're good");
 //				}
