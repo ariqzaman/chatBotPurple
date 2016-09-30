@@ -9,7 +9,7 @@ public class JiaMingRPG implements Topic {
 	public boolean isTriggered(String userInput) {
 		if(BillyMain.findKeyword(userInput, "RPG", 0)>=0)
 		{
-			return true;
+			return true;dasdasdasd
 		}
 		return false;
 	}
