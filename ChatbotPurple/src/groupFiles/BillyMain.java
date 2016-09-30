@@ -129,7 +129,7 @@ public class BillyMain {
 
 		public static void createTopics() {
 			input = new Scanner(System.in);
-			fps = new FpsType();
+			fps = new BillyFpsType();
 			//initialize topics
 
 		}

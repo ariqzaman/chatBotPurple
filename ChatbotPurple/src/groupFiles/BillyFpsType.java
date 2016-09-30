@@ -2,7 +2,7 @@ package groupFiles;
 
 import groupFiles.BillyMain;
 
-public class FpsType implements Topic{
+public class BillyFpsType implements Topic{
 	
 	private boolean inFpsLoop;
 	private String fpsResponse;
@@ -18,7 +18,6 @@ public class FpsType implements Topic{
 			}
 			BillyMain.print("That's my favorite part about school too.");
 		}
-		
 	}
 	
 	public boolean isTriggered(String userInput) {
