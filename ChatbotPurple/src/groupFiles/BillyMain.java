@@ -8,8 +8,7 @@ public class BillyMain {
 		static String user;
 		static boolean inLoop;
 		static String response;
-		static Topic hello;
-		static Topic food;
+		static Topic fps;
 
 		public static void main(String[] args) {
 			createTopics();
@@ -19,7 +18,7 @@ public class BillyMain {
 		}
 
 		public static void promptName() {
-			print("Hello, human! I am a board covered with semiconductors\n and other such electronic components, What is your name?");
+			print("Hello, human! I am a GameBOT. What is your name?");
 			// /n makes the line break
 			user = input.nextLine(); //user referencing the field user
 			print("Hello "+ user);
@@ -29,18 +28,14 @@ public class BillyMain {
 			inLoop = true;
 			while(inLoop){ //what ever is inside the while loop is true, it keeps running
 				//promptInput();
-				print("Greetings, "+user+". How are you?");
-				response = getInput();
-				if (findKeyword(response, "good", 0)>=0){
-					print("I'm so happy you're good");
-				}
-				else if (hello.isTriggered(response)){
+				print("Greetings, "+user+". What kinds of games do you like??");
+//				response = getInput();
+//				if (findKeyword(response, "good", 0)>=0){
+//					print("I'm so happy you're good");
+//				}
+				if (fps.isTriggered(response)){
 					inLoop =false;//exits the loop
-					hello.talk();
-				}
-				else if (food.isTriggered(response)){
-					inLoop =false;//exits the loop
-					food.talk();
+					fps.talk();
 				}
 				else
 					print("Im sorry i dont understand you");
@@ -48,26 +43,17 @@ public class BillyMain {
 		}
 
 		public static int findKeyword(String searchString, String key, int startIndex) {
-			String phrase = searchString.trim();//deletes all the white space in the input
-			//set all letters lowerCase
+			String phrase = searchString.trim();
 			phrase = phrase.toLowerCase();
 			key = key.toLowerCase();
-//			System.out.println("The phrase is " +phrase);
-//			System.out.println("The key is " +key);
-			int psn = phrase.indexOf(key); //finds the first position of keep word
-			
-//			System.out.println("The position is " +psn);
-			
-			//keep checking for key word until context is found
-			while (psn>=0){ //only runs if the word is found
-				//checks to see if the key is isolated
+			int psn = phrase.indexOf(key); 
+			while (psn>=0){ 
 				String before=" ";
 				String after = " ";
-				if(psn + key.length() <phrase.length()){ //checks the character after the key
-					//substring returns part of the string
+				if(psn + key.length() <phrase.length()){ 
 					after = phrase.substring(psn + key.length(), psn + key.length()+1);
 				}
-				if(psn>0){ //checks the character before the key
+				if(psn>0){ 
 					before = phrase.substring(psn-1,psn);
 				}
 				if(before.compareTo("a")<0 && after.compareTo("a")<0){
@@ -76,18 +62,12 @@ public class BillyMain {
 					}
 					return -1;
 				}
-				//if keyword is not found yet, check the rest of the string
 				psn = phrase.indexOf(key,psn+1);
 			}
 			
-			return -1; //return -1 if word is not found
+			return -1; 
 		}
 		
-		/*"help method" a method that contributes functionality to another method
-		 * Make methods more readable
-		 * This method is private  because it's only used by the method it is helping
-		 */
-
 		private static boolean noNegation(String phrase, int index) {
 			//check for word "NO " - 3 characters long
 			//check to see if there is space for the word "NO " to be in front of index
@@ -148,8 +128,8 @@ public class BillyMain {
 
 
 		public static void createTopics() {
-			hello = new BillyHello();
-			food = new BillyFood();
+			input = new Scanner(System.in);
+			fps = new FpsType();
 			//initialize topics
 
 		}
