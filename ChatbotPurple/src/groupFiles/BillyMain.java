@@ -23,14 +23,13 @@ public class BillyMain {
 			print("Hello, human! I am a GameBOT. What is your name?");
 			// /n makes the line break
 			user = input.nextLine(); //user referencing the field user
-			print("Hello "+ user);
 		}
 
 		public static void talkForever() {
 			inLoop = true;
 			while(inLoop){ //what ever is inside the while loop is true, it keeps running
 				//promptInput();
-				print("Greetings, "+user+". What kinds of games do you like??");
+				print("Greetings, "+user+". What genre of games do you like?");
 				response = getInput();
 //				if (findKeyword(response, "good", 0)>=0){
 //					print("I'm so happy you're good");
@@ -48,7 +47,7 @@ public class BillyMain {
 					jiaMing.talk();
 				}
 				else
-					print("Im sorry i dont understand you");
+					print("I'm sorry I dont understand you.");
 			}
 		}
 
@@ -141,7 +140,7 @@ public class BillyMain {
 			input = new Scanner(System.in);
 			fps = new BillyFpsType();
 			ariq = new AriqMultiplayer();
-			jiaMing = new JiaMingRPG();
+			jiaMing = new JiaMingMobileGame();
 			//initialize topics
 
 		}
