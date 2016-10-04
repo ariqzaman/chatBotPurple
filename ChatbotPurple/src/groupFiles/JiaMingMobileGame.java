@@ -203,7 +203,7 @@ public class JiaMingMobileGame implements Topic {
 				else{
 						System.out.println("Don't then, if you curse one more time, I will stop talking to you. Let's continue from where we left off.");
 					}
-					rudeCounter++;
+					rudeCounter++
 					rudeLoop=false;
 					response=BillyMain.getInput();
 					checkString(whereWeLeftOff);
