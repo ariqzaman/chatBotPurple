@@ -50,7 +50,6 @@ public class BillyMain {
 					print("I'm sorry I dont understand you.");
 			}
 		}
-
 		public static int findKeyword(String searchString, String key, int startIndex) {
 			String phrase = searchString.trim();
 			phrase = phrase.toLowerCase();
