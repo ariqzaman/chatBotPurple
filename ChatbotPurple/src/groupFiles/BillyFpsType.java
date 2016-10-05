@@ -9,10 +9,9 @@ public class BillyFpsType implements Topic{
 	private String fpsResponse;
 
 	private static String[] consleRes = {"Eww you play on a consle", "It's 2016, pc is master race", "Consles were so 2013"};
-	private static String[] favGame = {"Overwatch", "Call of Duty", "Battlefield", "Team fortress 2", "Counter Strike Global Offensive", "Doom"};
+	private static String[] favGame = {"overwatch", "call of duty", "battlefield", "team fortress 2", "counter strike global offensive", "doom"};
 
 	public void talk() {
-		int responseIndex =0;
 		inDeviceLoop = true;
 		BillyMain.print("Oh, you like shooting games? ME TOO. What device do you play on?");
 		while(inDeviceLoop){
@@ -35,7 +34,7 @@ public class BillyFpsType implements Topic{
 				String userFav = fpsResponse.substring(favPsn+17);
 				BillyMain.print("Cool, so your favorite game is "+userFav);
 				String botFav = randomFromArray(favGame);
-				if(userFav == botFav )
+				if(userFav.equalsIgnoreCase(botFav))
 					BillyMain.print("YES, my favorite game is " +botFav+ " too!!!" );
 				else
 					BillyMain.print("That's a good choice but, I like "+botFav+" more");
