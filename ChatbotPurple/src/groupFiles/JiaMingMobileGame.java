@@ -173,16 +173,22 @@ public class JiaMingMobileGame implements Topic {
 				topicLoop=false;
 				BillyMain.fps.talk();
 			}
-			else if (BillyMain.ariq.isTriggered(response)){
+			if (BillyMain.kev.isTriggered(response)){
+				inLoop =false;
+				topicLoop=false;
+				BillyMain.kev.talk();
+			}
+			if (BillyMain.ariq.isTriggered(response)){
 				inLoop =false;
 				topicLoop=false;
 				BillyMain.ariq.talk();
 			}
-			else if (BillyMain.findKeyword(response,"mobile",0)>-1 || BillyMain.findKeyword(response,"phone",0)>-1){
+			if (BillyMain.findKeyword(response,"mobile",0)>-1 || BillyMain.findKeyword(response,"phone",0)>-1){
 				System.out.println("Nope, choose another topic to talk about, you said you hated mobile games.");
 			}
-			else
-				BillyMain.print("I'm sorry I dont understand you.");
+			else{
+				System.out.println("I'm sorry I dont understand you.");
+			}
 		}
 	}
 	private static boolean determineIfCursing(){ // determine if the person is cursing
