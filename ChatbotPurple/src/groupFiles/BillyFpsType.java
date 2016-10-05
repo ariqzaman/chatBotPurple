@@ -40,7 +40,6 @@ public class BillyFpsType implements Topic{
 				else
 					BillyMain.print("That's a good choice but, I like "+botFav+" more");
 			}
-			
 			if(fpsResponse.indexOf("stop")>=0){
 				inFpsLoop = false;
 				BillyMain.talkForever();
