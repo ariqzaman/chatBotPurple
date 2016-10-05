@@ -122,7 +122,7 @@ public class JiaMingMobileGame implements Topic {
 				System.out.println("I don't really understand what you just said. Please answser me correctly.");
 			}
 		}
-	public static void checkIfAskBotQuestion(int whereWeLeftOff){ // respond to possible questions asked by user
+	private static void checkIfAskBotQuestion(int whereWeLeftOff){ // respond to possible questions asked by user
 		if(BillyMain.findKeyword(response, "?", 0)>-1 || BillyMain.findKeyword(response, "what", 0)>-1){
 			if(BillyMain.findKeyword(response, "what", 0)>-1 && BillyMain.findKeyword(response, "you like", 0)>-1 && BillyMain.findKeyword(response, "mobile", 0)>-1 || BillyMain.findKeyword(response, "phone", 0)>-1){
 				String[] ans={"I like it because I like touching the screen with my fingers.","I like it because there are more interactions."};
@@ -146,7 +146,7 @@ public class JiaMingMobileGame implements Topic {
 			checkIfAskBotQuestion(whereWeLeftOff);
 		}
 	}
-	public static void checkString(int whereWeLeftOff){ // checks if the person is cursing or wants to change topic
+	private static void checkString(int whereWeLeftOff){ // checks if the person is cursing or wants to change topic
 			if(determineIfCursing()){
 				replyToCurse(whereWeLeftOff);
 			}
@@ -155,29 +155,37 @@ public class JiaMingMobileGame implements Topic {
 				replyToHateTopic();
 			}
 		}
-	public static boolean determineIfHateTopic(){ // determine if they hate the mobile game topic
-		if(BillyMain.findKeyword(response, "stop", 0)>-1 || BillyMain.findKeyword(response, "don't like mobile", 0)>-1 || BillyMain.findKeyword(response, "do not like mobile", 0)>-1 || BillyMain.findKeyword(response, "hate mobile", 0)>-1 || BillyMain.findKeyword(response, "dont like mobile", 0)>-1 || BillyMain.findKeyword(response, "something else", 0)>-1 || BillyMain.findKeyword(response, "another genre", 0)>-1 || BillyMain.findKeyword(response, "different genre", 0)>-1 || BillyMain.findKeyword(response, "another topic", 0)>-1 || BillyMain.findKeyword(response, "different topic", 0)>-1){
+	private static boolean determineIfHateTopic(){ // determine if they hate the mobile game topic
+		if(BillyMain.findKeyword(response, "stop", 0)>-1 || BillyMain.findKeyword(response, "don't like mobile", 0)>-1 || BillyMain.findKeyword(response, "do not like mobile", 0)>-1 || BillyMain.findKeyword(response, "hate mobile", 0)>-1 || BillyMain.findKeyword(response, "hate them", 0)>-1 ||BillyMain.findKeyword(response, "dont like mobile", 0)>-1 || BillyMain.findKeyword(response, "something else", 0)>-1 || BillyMain.findKeyword(response, "another genre", 0)>-1 || BillyMain.findKeyword(response, "different genre", 0)>-1 || BillyMain.findKeyword(response, "another topic", 0)>-1 || BillyMain.findKeyword(response, "different topic", 0)>-1){
 			return true;
 		}
 		else{
 			return false;
 		}
 	}
-	public static void replyToHateTopic(){ // respond to them hating the mobile game topic
+	private static void replyToHateTopic(){ // respond to them hating the mobile game topic
 			System.out.println("What other genre of games do you like? :D");
+			boolean topicLoop=true;
+			while(topicLoop){
 			response=BillyMain.getInput();
 			if (BillyMain.fps.isTriggered(response)){
 				inLoop =false;
+				topicLoop=false;
 				BillyMain.fps.talk();
 			}
 			else if (BillyMain.ariq.isTriggered(response)){
 				inLoop =false;
+				topicLoop=false;
 				BillyMain.ariq.talk();
+			}
+			else if (BillyMain.findKeyword(response,"mobile",0)>-1 || BillyMain.findKeyword(response,"phone",0)>-1){
+				System.out.println("Nope, choose another topic to talk about, you said you hated mobile games.");
 			}
 			else
 				BillyMain.print("I'm sorry I dont understand you.");
 		}
-	public static boolean determineIfCursing(){ // determine if the person is cursing
+	}
+	private static boolean determineIfCursing(){ // determine if the person is cursing
 		String[] rudeWords= {"fuck","suck my dick","smd","suckmydick","fuckyou","bitch","stupid","cunt","faggot","gay","anus","ass","whore"};
 		for(int i=0;i<rudeWords.length;i++){
 			if(BillyMain.findKeyword(response, rudeWords[i], 0)>-1){
@@ -186,7 +194,7 @@ public class JiaMingMobileGame implements Topic {
 		}
 		return false;
 	}
-	public static void replyToCurse(int whereWeLeftOff){ // respond to them cursing
+	private static void replyToCurse(int whereWeLeftOff){ // respond to them cursing
 		String[] rudeReply= {"Don't curse at me again, okay?","Please apologize for using bad words!"};
 		boolean rudeLoop = determineIfCursing();
 		if(rudeLoop){
