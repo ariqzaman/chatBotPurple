@@ -73,7 +73,7 @@ public class BillyMain {
 		return -1;
 	}
 
-	private static boolean noNegation(String phrase, int index) {
+	public static boolean noNegation(String phrase, int index) {
 		if (index - 3 >= 0 && phrase.substring(index - 3, index).equals("no ")) {
 			return false;
 		}
