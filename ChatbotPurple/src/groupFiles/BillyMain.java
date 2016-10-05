@@ -87,7 +87,7 @@ public class BillyMain {
 			return false;
 		}
 		return true;
-	}
+	
 
 	public static String getInput() {
 		return input.nextLine();
