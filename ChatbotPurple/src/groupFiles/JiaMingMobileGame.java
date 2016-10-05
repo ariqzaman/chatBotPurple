@@ -41,7 +41,7 @@ public class JiaMingMobileGame implements Topic {
 							response=BillyMain.getInput();
 							checkString(6);
 							checkIfAskBotQuestion(6);
-							System.out.println("Nice! My favorite is Crusader's Quest, what other genre of games do you like?");
+							System.out.println("Nice! My favorite is Crusader's Quest.");
 							replyToHateTopic();	
 						}
 						if(BillyMain.findKeyword(response, "good", 0)>-1 || BillyMain.findKeyword(response, "same", 0)>-1 || BillyMain.findKeyword(response, "convenient", 0)>-1){ 
@@ -69,7 +69,7 @@ public class JiaMingMobileGame implements Topic {
 							response=BillyMain.getInput();
 							checkString(6);
 							checkIfAskBotQuestion(6);
-							System.out.println("Nice! My favorite is Crusader's Quest, what other genre of games do you like?");
+							System.out.println("Nice! My favorite is Crusader's Quest.");
 							replyToHateTopic();	
 						}
 						if(BillyMain.findKeyword(response, "yes", 0)>-1 || BillyMain.findKeyword(response, "yeah", 0)>-1 || BillyMain.findKeyword(response, " i like", 0)>-1 || BillyMain.findKeyword(response, "same", 0)>-1){
@@ -98,7 +98,7 @@ public class JiaMingMobileGame implements Topic {
 							response=BillyMain.getInput();
 							checkString(6);
 							checkIfAskBotQuestion(6);
-							System.out.println("Nice! My favorite is Crusader's Quest, what other genre of games do you like?");
+							System.out.println("Nice! My favorite is Crusader's Quest.");
 							replyToHateTopic();	
 						}
 						if(BillyMain.findKeyword(response, "good", 0)>-1 || BillyMain.findKeyword(response, "amazing", 0)>-1 || BillyMain.findKeyword(response, "fun", 0)>-1 || BillyMain.findKeyword(response, "too", 0)>-1){
