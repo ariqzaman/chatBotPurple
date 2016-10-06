@@ -41,7 +41,7 @@ public class JiaMingMobileGame implements Topic {
 							response=BillyMain.getInput();
 							checkString(6);
 							checkIfAskBotQuestion(6);
-							System.out.println("Nice! My favorite is Crusader's Quest, what other genre of games do you like?");
+							System.out.println("Nice! My favorite is Crusader's Quest.");
 							replyToHateTopic();	
 						}
 						if(BillyMain.findKeyword(response, "good", 0)>-1 || BillyMain.findKeyword(response, "same", 0)>-1 || BillyMain.findKeyword(response, "convenient", 0)>-1){ 
@@ -69,7 +69,7 @@ public class JiaMingMobileGame implements Topic {
 							response=BillyMain.getInput();
 							checkString(6);
 							checkIfAskBotQuestion(6);
-							System.out.println("Nice! My favorite is Crusader's Quest, what other genre of games do you like?");
+							System.out.println("Nice! My favorite is Crusader's Quest.");
 							replyToHateTopic();	
 						}
 						if(BillyMain.findKeyword(response, "yes", 0)>-1 || BillyMain.findKeyword(response, "yeah", 0)>-1 || BillyMain.findKeyword(response, " i like", 0)>-1 || BillyMain.findKeyword(response, "same", 0)>-1){
@@ -98,7 +98,7 @@ public class JiaMingMobileGame implements Topic {
 							response=BillyMain.getInput();
 							checkString(6);
 							checkIfAskBotQuestion(6);
-							System.out.println("Nice! My favorite is Crusader's Quest, what other genre of games do you like?");
+							System.out.println("Nice! My favorite is Crusader's Quest.");
 							replyToHateTopic();	
 						}
 						if(BillyMain.findKeyword(response, "good", 0)>-1 || BillyMain.findKeyword(response, "amazing", 0)>-1 || BillyMain.findKeyword(response, "fun", 0)>-1 || BillyMain.findKeyword(response, "too", 0)>-1){
@@ -122,8 +122,9 @@ public class JiaMingMobileGame implements Topic {
 				System.out.println("I don't really understand what you just said. Please answser me correctly.");
 			}
 		}
+	
 	private static void checkIfAskBotQuestion(int whereWeLeftOff){ // respond to possible questions asked by user
-		if(BillyMain.findKeyword(response, "?", 0)>-1 || BillyMain.findKeyword(response, "what", 0)>-1){
+		if(BillyMain.findKeyword(response, "?", 0)>-1){
 			if(BillyMain.findKeyword(response, "what", 0)>-1 && BillyMain.findKeyword(response, "you like", 0)>-1 && BillyMain.findKeyword(response, "mobile", 0)>-1 || BillyMain.findKeyword(response, "phone", 0)>-1){
 				String[] ans={"I like it because I like touching the screen with my fingers.","I like it because there are more interactions."};
 				System.out.println(ans[(int) (Math.random()*1)]);
@@ -192,7 +193,7 @@ public class JiaMingMobileGame implements Topic {
 		}
 	}
 	private static boolean determineIfCursing(){ // determine if the person is cursing
-		String[] rudeWords= {"fuck","suck my dick","smd","suckmydick","fuckyou","bitch","stupid","cunt","faggot","gay","anus","ass","whore"};
+		String[] rudeWords= {"fuck","fucking","fking","suck my dick","smd","suckmydick","fuckyou","bitch","stupid","cunt","faggot","gay","anus","ass","whore"};
 		for(int i=0;i<rudeWords.length;i++){
 			if(BillyMain.findKeyword(response, rudeWords[i], 0)>-1){
 				return true;
@@ -212,10 +213,12 @@ public class JiaMingMobileGame implements Topic {
 				System.out.println(rudeReply[(int)(Math.random()*1)]);
 				response=BillyMain.getInput();
 				if(BillyMain.findKeyword(response, "okay", 0)>-1 || BillyMain.findKeyword(response, "ok", 0)>-1 || BillyMain.findKeyword(response, "sorry", 0)>-1 || BillyMain.findKeyword(response, "yes", 0)>-1){
-						System.out.println("Thank you, if you curse again I won't talk to you anymore! Let's continue from where we left off.");
+						System.out.println("Thank you, if you curse again I won't talk to you anymore! Back to where we left off, ");
+						System.out.println(returnToMyQuestion[whereWeLeftOff]);
 					}
 				else{
-						System.out.println("Don't then, if you curse one more time, I will stop talking to you. Let's continue from where we left off.");
+						System.out.println("Don't then, if you curse one more time, I will stop talking to you. Back to where we left off, ");
+						System.out.println(returnToMyQuestion[whereWeLeftOff]);
 					}
 					rudeCounter++;
 					rudeLoop=false;
