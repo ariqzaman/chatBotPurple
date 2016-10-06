@@ -7,39 +7,53 @@ public class AriqMultiplayer implements Topic {
 
 	private boolean gameTrigger;
 
-	private static String[] multi = { "", "", "" };
-	private static String[] favMultiplayerGame = { "Overwatch", "League of legends", "Dota", "TERA",
-			"Counter Strike Global Offensive" };
+	private static String[] multi = { "then why would you tell me you liked multiplayer games?" ,"Im done talking abotu multiplayer games" };
+	private static String[] favMultiplayerGame = { "overwatch", "league of legends", "dota", "tera",
+			"counter strike global offensive" };
 	private static String[] deny = { "don't", "no", "not" };
 
 	public void talk() {
 		int ariqIndex = 0;
 		inMultiplayerLoop = true;
-main:
-		while (inMultiplayerLoop) {
+		main: while (inMultiplayerLoop) {
 			if (gameTrigger) {
 				BillyMain.print("That's a cool multi-player game");
 				MultiplayerResponse = BillyMain.getInput();
-				
-				
+				gameTrigger = false;
+
 				break;
-				
+
 			} else {
 				BillyMain.print("You like multiplayer games too?");
 				MultiplayerResponse = BillyMain.getInput();
 				if (gameType()) {
 					BillyMain.print("That's cool. What multiplayer games do you play?");
-					MultiplayerResponse = BillyMain.getInput();
+					MultiplayerResponse = BillyMain.getInput().toLowerCase();
 					for (int i = 0; i < favMultiplayerGame.length; i++) {
-						if(MultiplayerResponse.indexOf(favMultiplayerGame[i]) >= 0){
+						if (MultiplayerResponse.indexOf(favMultiplayerGame[i]) >= 0) {
 							gameTrigger = true;
 							continue main;
 						}
 					}
 
+					BillyMain.print("Sorry I never played that game before. Do you play any other multiplayer games?");
+					MultiplayerResponse = BillyMain.getInput();
+					for (int k = 0; k < deny.length; k++) {
+						if (MultiplayerResponse.indexOf(deny[k]) >= 0) {
+							break main;
+
+						}
+
+					}
+
+					BillyMain.print("I've heard of that game somewhere before...");
+					break main;
+
 				} else {
 					ariqIndex = (int) (Math.random() * multi.length);
 					BillyMain.print(multi[ariqIndex]);
+					inMultiplayerLoop = false;
+					BillyMain.talkForever();
 				}
 				MultiplayerResponse = BillyMain.getInput();
 
@@ -53,10 +67,9 @@ main:
 					}
 				}
 			}
-			
-			
+
 		}
-		
+
 		BillyMain.talkForever();
 	}
 
