@@ -16,8 +16,6 @@ public class KevinGame implements Topic {
 			"You are speaking gibberish. Seriously? It's either rock, paper, or scissor",
 			"Stop speaking in baby language. You obviously don't want to play, so let's just stop." };
 
-	private static final String[] TIE_MESSAGES = { "Seems like we tied.", "Seems like we tied... again...",
-			"WHY DO WE KEEP TYING?", "Seriously stop copying me. We tied again?" };
 	private static final String[] ONE_TRICK_PONY = { "You seem to be choosing %s a lot...",
 			"I'm starting to catch onto your trick...", "Stop choosing %s so much!", "Once again %s really?" };
 
@@ -26,6 +24,8 @@ public class KevinGame implements Topic {
 			"DON'T EVER COME BACK HERE AGAIN SCRUB" };
 	private static final String[] LOSING_MESSAGES = { "Eh luck was on your side this time.", "What? How could this be?",
 			"Heh... looking rigged...", "STOP CHEATING!" };
+	private static final String[] TIE_MESSAGES = { "Seems like we tied.", "Seems like we tied... again...",
+			"WHY DO WE KEEP TYING?", "Seriously stop copying me. We tied again?" };
 
 	private static final List<String> moves = new ArrayList<String>(Arrays.asList("paper", "scissor", "rock"));
 
@@ -41,7 +41,8 @@ public class KevinGame implements Topic {
 		this.invalidAngerLevel = 0;
 	}
 
-	public static void kevSay(String s) {
+	// Wrapper for BillMain.print
+	private static void kevSay(String s) {
 		BillyMain.print("KevBot: " + s);
 	}
 
@@ -59,7 +60,7 @@ public class KevinGame implements Topic {
 				kevSay(INVALID_MOVE_ERRORS[invalidAngerLevel]);
 
 				if (invalidAngerLevel == 3) {
-					break;
+					break;	
 				}
 
 				invalidAngerLevel++;
@@ -70,7 +71,7 @@ public class KevinGame implements Topic {
 
 			int randMov = chooseRandomMove();
 			int result = compare(move, randMov);
-
+                   
 			kevSay(String.format(REVEAL_MESSAGE, convertIntToMove(randMov)));
 			BillyMain.print(RESULTS_NARRATIONS[result + 1]);
 			if (result == 0) {
@@ -92,11 +93,7 @@ public class KevinGame implements Topic {
 	public boolean isTriggered(String userInput) {
 		return BillyMain.findKeyword(userInput, "play", 0) != -1;
 	}
-
-	public int chooseRandomMove() {
-		return (int) (Math.random() * 3);
-	}
-
+ 
 	/*
 	 * Compare i and j as rock, paper scissor moves.
 	 * 
@@ -105,7 +102,7 @@ public class KevinGame implements Topic {
 	 *   0 if i and j tie
 	 *   1 if j beats i
 	 */
-	public int compare(int i, int j) {
+	private int compare(int i, int j) {
 		if ((i - 1 == j) || (i == 0 && j == 2)) {
 			return 1;
 		} else if ((j - 1 == i) || ( j == 0 && i == 2)) {
@@ -114,12 +111,22 @@ public class KevinGame implements Topic {
 
 		return 0;
 	}
+	
+	/*
+	 * Move to int map
+	 * 0 - paper
+	 * 1 - scissor
+	 * 2 - rock
+	 */
+	private int chooseRandomMove() {
+		return (int) (Math.random() * 3);
+	}
 
-	public int convertMoveToInt(String move) {
+	private int convertMoveToInt(String move) {
 		return moves.indexOf(move);
 	}
 
-	public String convertIntToMove(int move) {
+	private String convertIntToMove(int move) {
 		return moves.get(move);
 	}
 }
