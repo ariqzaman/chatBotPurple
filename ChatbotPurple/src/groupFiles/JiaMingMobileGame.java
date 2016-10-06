@@ -190,7 +190,7 @@ public class JiaMingMobileGame implements Topic {
 			else{
 				System.out.println("I'm sorry I dont understand you.");
 			}
-		}
+		
 	}
 	private static boolean determineIfCursing(){ // determine if the person is cursing
 		String[] rudeWords= {"fuck","fucking","fking","suck my dick","smd","suckmydick","fuckyou","bitch","stupid","cunt","faggot","gay","anus","ass","whore"};
