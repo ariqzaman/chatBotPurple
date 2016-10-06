@@ -1,56 +1,53 @@
 package groupFiles;
-
+//fun,convenient,no,yes
+//what other genre of games do you play?
+//cursing, hate topic
 public class JiaMingMobileGame implements Topic {
-	static boolean inLoop;
+	static boolean inLoop; //each loop is made for each different path that the user has chosen themself based on their response
 	static boolean inLoop2;
 	static boolean inLoop3;
 	static boolean inLoop4;
 	static boolean inLoop5;
 	static String response;
-	static int rudeCounter=0;
+	static int rudeCounter=0; //if rudeCounter>1, then the program will shut down
 	
 	
 	static String[] returnToMyQuestion={"What do you like most about mobile games?","But what makes mobile games better than others?",
 			"What about gaming on laptop? They are pretty convenient too.","Do you like Nintendo DS too?","What about PC games?","What other genres do you like?",
 			"What's your favorite mobile game?","What genre of PC games like FPS or Multiplayer?","Which Nintendo DS game is your favorite?","Which PC game do you like the best?"};
-	// return to where we were before the user asked the question
+	// this array allows the bot to say the question again after it is interrupted by a question from the user
 	public void talk() {
 		System.out.println("YES! Mobile games are the best! What do you like most about mobile games?");
 		inLoop=true;
 		while(inLoop){
 			response=BillyMain.getInput();
 			checkString(0);
-			checkIfAskBotQuestion(0);
 			if(BillyMain.findKeyword(response, "fun", 0)>-1 || BillyMain.findKeyword(response, "exciting", 0)>-1 || BillyMain.findKeyword(response, "good", 0)>-1 || BillyMain.findKeyword(response, "cool", 0)>-1){
 				System.out.println("All video games are like that! But what makes mobile games better than others?");
 				inLoop2=true;
 				while(inLoop2){
 					response=BillyMain.getInput();
 					checkString(1);
-					checkIfAskBotQuestion(1);
 					if(BillyMain.findKeyword(response, "travel", 0)>-1 || BillyMain.findKeyword(response, "move", 0)>-1 || BillyMain.findKeyword(response, "convenient", 0)>-1 || BillyMain.findKeyword(response, "handy", 0)>-1 || BillyMain.findKeyword(response, "comfortable", 0)>-1){ //predicting 
 						System.out.println("Yeah, they are pretty convenient, you can play whereever you want. What about gaming on laptop? They are pretty convenient too.");
 						inLoop3=true;
 						while(inLoop3){
 						response=BillyMain.getInput();
 						checkString(2);
-						checkIfAskBotQuestion(2);
 						if(BillyMain.findKeyword(response, "not as", 0)>-1 || BillyMain.findKeyword(response, "not the same", 0)>-1 || BillyMain.findKeyword(response, "boring", 0)>-1){ 
-							// user might say still not as convenient as mobile
+							// hates laptop
 							System.out.println("Aww, that's too bad, what's your favorite mobile game?");
 							response=BillyMain.getInput();
 							checkString(6);
-							checkIfAskBotQuestion(6);
 							System.out.println("Nice! My favorite is Crusader's Quest.");
-							replyToHateTopic();	
+							replyToHateTopic();	// asks for another genre of game to talk about
 						}
 						if(BillyMain.findKeyword(response, "good", 0)>-1 || BillyMain.findKeyword(response, "same", 0)>-1 || BillyMain.findKeyword(response, "convenient", 0)>-1){ 
-							// user might say he/she enjoys laptop
+							// enjoy laptop
 							System.out.println("What genre of PC games do you like? (Multiplayer, FPS and etc.)");
 							response=BillyMain.getInput();
 							checkString(7);
-							checkIfAskBotQuestion(7);
-							replyToHateTopic();	
+							replyToHateTopic();	// asks for another genre of game to talk about
 						}
 						else
 							System.out.println("I don't relly understand what you just said. Please answser me correctly.");
@@ -62,24 +59,21 @@ public class JiaMingMobileGame implements Topic {
 						while(inLoop4){
 						response=BillyMain.getInput();
 						checkString(3);
-						checkIfAskBotQuestion(3);
 						if(BillyMain.findKeyword(response, "no", 0)>-1 || BillyMain.findKeyword(response, "nah", 0)>-1 || BillyMain.findKeyword(response, "nope", 0)>-1 || BillyMain.findKeyword(response, "don", 0)>-1){
 							// hates nintendo ds
 							System.out.println("Aww, that's too bad, what's your favorite mobile game?");
 							response=BillyMain.getInput();
 							checkString(6);
-							checkIfAskBotQuestion(6);
 							System.out.println("Nice! My favorite is Crusader's Quest.");
-							replyToHateTopic();	
+							replyToHateTopic();	// asks for another genre of game to talk about
 						}
 						if(BillyMain.findKeyword(response, "yes", 0)>-1 || BillyMain.findKeyword(response, "yeah", 0)>-1 || BillyMain.findKeyword(response, " i like", 0)>-1 || BillyMain.findKeyword(response, "same", 0)>-1){
-							// like nintendo ds
+							// likes nintendo ds
 							System.out.println("What's your favorite game on the Nintendo DS? My favorites are the Pokemon franchises.");
 							response=BillyMain.getInput();
 							checkString(8);
-							checkIfAskBotQuestion(8);
 							System.out.println("That game was one of my favorites!");
-							replyToHateTopic();		
+							replyToHateTopic();	// asks for another genre of game to talk about
 						}
 						else
 							System.out.println("I don't relly understand what you just said. Please answser me correctly.");
@@ -91,26 +85,23 @@ public class JiaMingMobileGame implements Topic {
 						while(inLoop5){
 						response=BillyMain.getInput();
 						checkString(4);
-						checkIfAskBotQuestion(4);
 						if(BillyMain.findKeyword(response, "bad", 0)>-1 || BillyMain.findKeyword(response, "horrible", 0)>-1 || BillyMain.findKeyword(response, "don", 0)>-1 || BillyMain.findKeyword(response, "hate", 0)>-1){
-							// not the same/bad
+							// does not enjoy pc gaming
 							System.out.println("Aww, that's too bad, what's your favorite mobile game?");
 							response=BillyMain.getInput();
 							checkString(6);
-							checkIfAskBotQuestion(6);
 							System.out.println("Nice! My favorite is Crusader's Quest.");
-							replyToHateTopic();	
+							replyToHateTopic();	// asks for another genre of game to talk about
 						}
 						if(BillyMain.findKeyword(response, "good", 0)>-1 || BillyMain.findKeyword(response, "amazing", 0)>-1 || BillyMain.findKeyword(response, "fun", 0)>-1 || BillyMain.findKeyword(response, "too", 0)>-1){
-							// enjoys pc gaming too
+							// enjoys pc gaming
 							System.out.println("That's awesome, my favorite PC game is League of Legends, what is yours?");
 							response=BillyMain.getInput();
 							checkString(9);
-							checkIfAskBotQuestion(9);
 							System.out.println("My friends like that game alot.");
-							replyToHateTopic();			
+							replyToHateTopic();	// asks for another genre of game to talk about
 						}
-						else
+						else // each loop has a "I don't understand you line", then it would return back to the beginning of the loop and ask the user for another input
 							System.out.println("I don't relly understand what you just said. Please answser me correctly.");
 					}	
 					}
@@ -124,7 +115,7 @@ public class JiaMingMobileGame implements Topic {
 		}
 	
 	private static void checkIfAskBotQuestion(int whereWeLeftOff){ // respond to possible questions asked by user
-		if(BillyMain.findKeyword(response, "?", 0)>-1){
+		if(response.indexOf("?")>-1){ // have to use indexOf because no one puts a space before putting a question mark (ex. are you a bot ? vs are you a bot?)
 			if(BillyMain.findKeyword(response, "what", 0)>-1 && BillyMain.findKeyword(response, "you like", 0)>-1 && BillyMain.findKeyword(response, "mobile", 0)>-1 || BillyMain.findKeyword(response, "phone", 0)>-1){
 				String[] ans={"I like it because I like touching the screen with my fingers.","I like it because there are more interactions."};
 				System.out.println(ans[(int) (Math.random()*1)]);
@@ -133,10 +124,10 @@ public class JiaMingMobileGame implements Topic {
 				String[] ans={"It's pretty fun but theres not enough games.","I liked the pokemon games on the DS."};
 				System.out.println(ans[(int) (Math.random()*1)]);
 			}
-			else if(BillyMain.findKeyword(response, "favorite", 0)>-1 || BillyMain.findKeyword(response, "you like", 0)>-1 && BillyMain.findKeyword(response, "game", 0)>-1 || BillyMain.findKeyword(response, "games", 0)>-1){
+			else if(BillyMain.findKeyword(response, "favorite", 0)>-1 && BillyMain.findKeyword(response, "game", 0)>-1 || BillyMain.findKeyword(response, "games", 0)>-1){
 				System.out.println("My favorite mobile game is Crusader's Quest, I have a lot of fun playing it.");
 			}
-			else if(BillyMain.findKeyword(response, "other genre", 0)>-1 || BillyMain.findKeyword(response, "other genres", 0)>-1){
+			else if(BillyMain.findKeyword(response, "other genre", 0)>-1 || BillyMain.findKeyword(response, "other genres", 0)>-1 || BillyMain.findKeyword(response, "play", 0)>-1){
 				System.out.println("Other than mobile games, I only like to play PC games.");
 			}
 			String[] returnResponse = {"Now back to where we left off.","I wanna know what you think.","That's cool."};
@@ -144,10 +135,9 @@ public class JiaMingMobileGame implements Topic {
 			System.out.println(returnToMyQuestion[whereWeLeftOff]);
 			response=BillyMain.getInput();
 			checkString(whereWeLeftOff);
-			checkIfAskBotQuestion(whereWeLeftOff);
 		}
 	}
-	private static void checkString(int whereWeLeftOff){ // checks if the person is cursing or wants to change topic
+	private static void checkString(int whereWeLeftOff){ // checks if the person is cursing or wants to change topic or if they are asking a question
 			if(determineIfCursing()){
 				replyToCurse(whereWeLeftOff);
 			}
@@ -155,8 +145,9 @@ public class JiaMingMobileGame implements Topic {
 				System.out.println("Well then... Let's talk about something else shall we?");
 				replyToHateTopic();
 			}
+			checkIfAskBotQuestion(whereWeLeftOff);
 		}
-	private static boolean determineIfHateTopic(){ // determine if they hate the mobile game topic
+	private static boolean determineIfHateTopic(){ // determine if they hate the mobile game topic / change topic if they do hate it
 		if(BillyMain.findKeyword(response, "stop", 0)>-1 || BillyMain.findKeyword(response, "don't like mobile", 0)>-1 || BillyMain.findKeyword(response, "do not like mobile", 0)>-1 || BillyMain.findKeyword(response, "hate mobile", 0)>-1 || BillyMain.findKeyword(response, "hate them", 0)>-1 ||BillyMain.findKeyword(response, "dont like mobile", 0)>-1 || BillyMain.findKeyword(response, "something else", 0)>-1 || BillyMain.findKeyword(response, "another genre", 0)>-1 || BillyMain.findKeyword(response, "different genre", 0)>-1 || BillyMain.findKeyword(response, "another topic", 0)>-1 || BillyMain.findKeyword(response, "different topic", 0)>-1){
 			return true;
 		}
@@ -164,7 +155,7 @@ public class JiaMingMobileGame implements Topic {
 			return false;
 		}
 	}
-	private static void replyToHateTopic(){ // respond to them hating the mobile game topic
+	private static void replyToHateTopic(){ // respond to them wanting to change topic
 			System.out.println("What other genre of games do you like? :D");
 			boolean topicLoop=true;
 			while(topicLoop){
@@ -224,7 +215,6 @@ public class JiaMingMobileGame implements Topic {
 					rudeLoop=false;
 					response=BillyMain.getInput();
 					checkString(whereWeLeftOff);
-					checkIfAskBotQuestion(whereWeLeftOff);
 			}
 		}
 	}
