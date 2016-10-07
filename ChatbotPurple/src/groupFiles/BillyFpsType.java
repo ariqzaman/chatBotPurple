@@ -58,27 +58,26 @@ public class BillyFpsType implements Topic{
 			else{
 				otherTopic(fpsResponse);
 			}
-		}
-		
-		while(inFavLoop){
-			fpsResponse = BillyMain.getInput();
-			int favPsn= BillyMain.findKeyword(fpsResponse, "favorite", 0);
-			if(favPsn >= 0){
-				String userFav = fpsResponse.substring(favPsn+17);
-				BillyMain.print("Cool, so your favorite game is "+userFav);
-				String botFav = randomFromArray(favGame);
-				if(userFav.equalsIgnoreCase(botFav))
-					BillyMain.print("YES, my favorite game is " +botFav+ " too!!!" );
-				else
-					BillyMain.print("That's a good choice but, I like "+botFav+" more");
-				inFavLoop=false;
-				inMainLoop=true;
-			}
-			else if(BillyMain.findKeyword(fpsResponse, "stop", 0)>= 0){
-				exitLoop(inFavLoop);
-			}
-			else{
-				BillyMain.print("Im sorry, I'm not that advanced yet, I don't understand what you're saying :(");
+			while(inFavLoop){
+				fpsResponse = BillyMain.getInput();
+				int favPsn= BillyMain.findKeyword(fpsResponse, "favorite", 0);
+				if(favPsn >= 0){
+					String userFav = fpsResponse.substring(favPsn+17);
+					BillyMain.print("Cool, so your favorite game is "+userFav);
+					String botFav = randomFromArray(favGame);
+					if(userFav.equalsIgnoreCase(botFav))
+						BillyMain.print("YES, my favorite game is " +botFav+ " too!!!" );
+					else
+						BillyMain.print("That's a good choice but, I like "+botFav+" more");
+					inFavLoop=false;
+					inMainLoop=true;
+				}
+				else if(BillyMain.findKeyword(fpsResponse, "stop", 0)>= 0){
+					exitLoop(inFavLoop);
+				}
+				else{
+					BillyMain.print("Im sorry, I'm not that advanced yet, I don't understand what you're saying :(");
+				}
 			}
 		}
 //		else if (BillyMain.findKeyword(fpsResponse, "play", 0)>= 0){
