@@ -7,8 +7,8 @@ public class AriqMultiplayer implements Topic {
 
 	private boolean gameTrigger;
 
-	private static String[] multi = { "then why would you tell me you liked multiplayer games?" ,"Im done talking abotu multiplayer games" };
-	private static String[] favMultiplayerGame = { "overwatch", "league of legends", "dota", "tera",
+	private static String[] multi = { "Then why would you tell me you liked multiplayer games?" ,"Im done talking about multiplayer games." };
+	private static String[] favMultiplayerGame = { "overwatch", "league of legends", "dota", "tera", "cs:go", "lol","world of warcraft","wow",
 			"counter strike global offensive" };
 	private static String[] deny = { "don't", "no", "not" };
 
@@ -57,7 +57,7 @@ public class AriqMultiplayer implements Topic {
 				}
 				MultiplayerResponse = BillyMain.getInput();
 
-				BillyMain.print("What other thing about multiplayer games do you want to talk about?");
+				BillyMain.print("Anything else you want to say about multiplayer games?");
 				MultiplayerResponse = BillyMain.getInput();
 				for (int k = 0; k < deny.length; k++) {
 					if (MultiplayerResponse.indexOf(deny[k]) >= 0) {
