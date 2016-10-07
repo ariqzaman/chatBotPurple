@@ -3,6 +3,26 @@ package groupFiles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+
+/*
+ * Kevin Zheng's Rock Paper Scissor Chatbot
+ * 
+ * Features:
+ * - Increasingly excited/aggravated responses based on wins/loses/ties
+ * - Recognizes repeated moves by player (choosing rock several times in a roll) and calls out player for predictability
+ * - Provides score tracking on exit
+ * 
+ * Triggers: rps, play
+ * 
+ * ========
+ * |RUBRIC|
+ * ========
+ * Variety:     The bot responds in different manners to the user's moves. 
+ * Originality: The bot plays rock paper and scissor with the user :)
+ * Finish:      Complete
+ * 
+ */
 
 public class KevinGame implements Topic {
 	private static final String INTRO_MESSAGE = "Hello %s, we are playing rock paper and scissors. Decide your move.",
@@ -26,94 +46,130 @@ public class KevinGame implements Topic {
 			"Heh... looking rigged...", "STOP CHEATING!" };
 	private static final String[] TIE_MESSAGES = { "Seems like we tied.", "Seems like we tied... again...",
 			"WHY DO WE KEEP TYING?", "Seriously stop copying me. We tied again?" };
+	private static final String[][] MESSAGES = { WINNING_MESSAGES, TIE_MESSAGES, LOSING_MESSAGES };
 
 	private static final List<String> moves = new ArrayList<String>(Arrays.asList("paper", "scissor", "rock"));
 
-	private int[] playerMovesTally;
-	private int wins, loses, ties;
-
+	private int[] log;
 	private int invalidAngerLevel;
+	private int lastMove, moveStreak;
 
 	public KevinGame() {
-		this.playerMovesTally = new int[] { 0, 0, 0 };
-		this.wins = this.loses = this.ties = 0;
-
-		this.invalidAngerLevel = 0;
+		reset();
 	}
 
-	// Wrapper for BillMain.print
+	// wrapper of BillyMain.print
 	private static void kevSay(String s) {
 		BillyMain.print("KevBot: " + s);
+	}
+
+	public void reset() {
+		this.log = new int[3];
+		
+		this.lastMove = -1;
+		this.moveStreak = 0;
+
+		this.invalidAngerLevel = 0;
 	}
 
 	@Override
 	public void talk() {
 		kevSay(String.format(INTRO_MESSAGE, BillyMain.user));
+
 		while (true) {
 			String input = BillyMain.getInput();
-			if (BillyMain.findKeyword(input, "exit", 0) != -1) {
+			if (BillyMain.findKeyword(input, "exit", 0) != -1 || BillyMain.findKeyword(input, "quit", 0) != -1) {
+				
+			    kevSay("Cya later alligator. You took the L.");
+			    BillyMain.print("You won " + log[2] + " times, lost " + log[0] + "times, and tied " + log[1] + " times.");
 				break;
 			}
 
+			if (input.equals("scissors")) input = "scissor"; // possibility user wants more than one scissor?
 			int move = convertMoveToInt(input.toLowerCase());
+
+			// check and handle invalid move
 			if (move == -1) {
-				kevSay(INVALID_MOVE_ERRORS[invalidAngerLevel]);
+				// select error msg based on anger level from repeated incoherency
+				String error = INVALID_MOVE_ERRORS[invalidAngerLevel];
+				kevSay(error);
 
 				if (invalidAngerLevel == 3) {
-					break;	
+					break;
 				}
 
 				invalidAngerLevel++;
 				continue;
 			}
-
-			playerMovesTally[move]++;
-
+			
+			// simulate a match
 			int randMov = chooseRandomMove();
 			int result = compare(move, randMov);
-                   
-			kevSay(String.format(REVEAL_MESSAGE, convertIntToMove(randMov)));
-			BillyMain.print(RESULTS_NARRATIONS[result + 1]);
-			if (result == 0) {
-				kevSay(String.format(TIE_MESSAGES[ties % 4], input));
-				ties++;
-			} else if (result == 1) {
-				kevSay(String.format(LOSING_MESSAGES[loses % 4], input));
-				loses++;
-			} else if (result == -1) {
-				kevSay(String.format(WINNING_MESSAGES[wins % 4], input));
-				wins++;
-			}
+
+			// print result
+			String reveal = String.format(REVEAL_MESSAGE, convertIntToMove(randMov));
+			kevSay(reveal);
+			BillyMain.print(RESULTS_NARRATIONS[result]);
+
+			// print kevbot opinion
+			String response = generateResponse(result, input);
+			kevSay(response);
+			
+			// log result
+			log[result]++;
+			
+			// log move
+			this.moveStreak = this.lastMove == move ? this.moveStreak + 1 : 0;
+			this.lastMove = move;
+		}
+	
+		// reset the bot's memory and go back to main
+		reset();
+		BillyMain.talkForever();
+	}
+
+	// generate response based on the match result and user's move
+	private String generateResponse(int result, String userMove) {
+		String message = null;
+		
+		// chance for KevBot to call out user for being predictable from using the same move consecutively
+		int rand = new Random().nextInt(4);
+		if (convertMoveToInt(userMove) == lastMove && moveStreak > 1 && moveStreak < 6 && rand != 3) {
+			message = String.format(ONE_TRICK_PONY[moveStreak - 2], userMove);
+		} else {
+			// select message based on match result and aggravation/excitement level
+			int excitementLevel = log[result] % MESSAGES[result].length;
+			message = MESSAGES[result][excitementLevel];
 		}
 
-		BillyMain.talkForever();
+		return message;
 	}
 
 	@Override
 	public boolean isTriggered(String userInput) {
-		return BillyMain.findKeyword(userInput, "play", 0) != -1;
+		return BillyMain.findKeyword(userInput, "play", 0) != -1 || BillyMain.findKeyword(userInput, "rps", 0) != -1;
 	}
- 
+
 	/*
-	 * Compare i and j as rock, paper scissor moves.
+	 * compare i and j as rock, paper scissor moves
 	 * 
-	 * Returns:
-	 *  -1 if i beats j
-	 *   0 if i and j tie
-	 *   1 if j beats i
+	 * returns:
+	 *  0 if i beats j
+	 *  1 if i and j tie 
+	 *  2 if j beats i
 	 */
 	private int compare(int i, int j) {
 		if ((i - 1 == j) || (i == 0 && j == 2)) {
-			return 1;
-		} else if ((j - 1 == i) || ( j == 0 && i == 2)) {
-			return -1;
+			return 2;
+		} else if ((j - 1 == i) || (j == 0 && i == 2)) {
+			return 0;
 		}
 
-		return 0;
+		return 1;
 	}
-	
+
 	/*
-	 * Move to int map
+	 * move to int mappings 
 	 * 0 - paper
 	 * 1 - scissor
 	 * 2 - rock
