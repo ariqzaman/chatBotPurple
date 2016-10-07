@@ -40,7 +40,6 @@ public class BillyFpsType implements Topic{
 		}
 		
 		while(inMainLoop){
-			BillyMain.print("exit");
 			BillyMain.print("What other thing about shooting games do you want to talk about?");
 			fpsResponse = BillyMain.getInput();	
 			if(BillyMain.findKeyword(fpsResponse, "favorite", 0)>= 0){
