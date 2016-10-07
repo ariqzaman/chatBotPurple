@@ -34,9 +34,8 @@ public class BillyFpsType implements Topic{
 			else if(BillyMain.findKeyword(fpsResponse, "stop", 0)>= 0){
 				exitLoop(inStartLoop);
 			}
-			else{
+			else
 				BillyMain.print("Im sorry, I'm not that advanced yet, I don't understand what you're saying :(");
-			}
 		}
 		
 		while(inMainLoop){
@@ -54,9 +53,8 @@ public class BillyFpsType implements Topic{
 				BillyMain.print("Okay then");
 				exitLoop(inMainLoop);
 			}
-			else{
+			else
 				otherTopic(fpsResponse);
-			}
 			while(inFavLoop){
 				fpsResponse = BillyMain.getInput();
 				int favPsn= BillyMain.findKeyword(fpsResponse, "favorite", 0);
@@ -74,9 +72,8 @@ public class BillyFpsType implements Topic{
 				else if(BillyMain.findKeyword(fpsResponse, "stop", 0)>= 0){
 					exitLoop(inFavLoop);
 				}
-				else{
+				else
 					BillyMain.print("Im sorry, I'm not that advanced yet, I don't understand what you're saying :(");
-				}
 			}
 		}
 //		else if (BillyMain.findKeyword(fpsResponse, "play", 0)>= 0){
