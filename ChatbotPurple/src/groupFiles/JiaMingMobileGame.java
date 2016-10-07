@@ -141,7 +141,7 @@ public class JiaMingMobileGame implements Topic {
 			if(determineIfCursing()){
 				replyToCurse(whereWeLeftOff);
 			}
-			else if(determineIfHateTopic())
+			else if(determineIfHateTopic()){
 				System.out.println("Well then... Let's talk about something else shall we?");
 				replyToHateTopic();
 			}
