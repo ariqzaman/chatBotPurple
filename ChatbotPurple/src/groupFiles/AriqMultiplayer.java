@@ -8,7 +8,7 @@ public class AriqMultiplayer implements Topic {
 	private boolean gameTrigger;
 
 	private static String[] multi = { "Then why would you tell me you liked multiplayer games?" ,"Im done talking about multiplayer games." };
-	private static String[] favMultiplayerGame = { "overwatch", "league of legends", "dota", "tera",
+	private static String[] favMultiplayerGame = { "overwatch", "league of legends", "dota", "tera", "cs:go", "lol","world of warcraft","wow",
 			"counter strike global offensive" };
 	private static String[] deny = { "don't", "no", "not" };
 
