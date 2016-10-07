@@ -97,13 +97,13 @@ public class BillyFpsType implements Topic{
 			inMainLoop = false;
 			BillyMain.kev.talk();
 		} 
-		if (BillyMain.ariq.isTriggered(response)) {
+		else if (BillyMain.ariq.isTriggered(response)) {
 			BillyMain.print(diffStrg+"multiplayer games");
 			inMainLoop = false;
 			BillyMain.ariq.talk();
 		} 
-		if (BillyMain.jiaMing.isTriggered(response)) {
-			BillyMain.print(diffStrg+"moblie games");
+		else if (BillyMain.jiaMing.isTriggered(response)) {
+			BillyMain.print(diffStrg+"mobile games");
 			inMainLoop = false;
 			BillyMain.jiaMing.talk();
 		}
