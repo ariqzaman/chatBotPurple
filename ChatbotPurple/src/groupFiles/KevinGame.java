@@ -25,12 +25,13 @@ import java.util.Random;
  */
 
 public class KevinGame implements Topic {
+	private static final List<String> moves = new ArrayList<String>(Arrays.asList("paper", "scissor", "rock"));
+	
 	private static final String INTRO_MESSAGE = "Hello %s, we are playing rock paper and scissors. Decide your move.",
 			REVEAL_MESSAGE = "I choose %s";
-
 	private static final String[] RESULTS_NARRATIONS = { "You lost the game", "You tied the game.",
 			"You won the game." };
-
+	
 	private static final String[] INVALID_MOVE_ERRORS = { "Sorry that is not a move. Please try again",
 			"What are you saying? Choose a move.",
 			"You are speaking gibberish. Seriously? It's either rock, paper, or scissor",
@@ -47,8 +48,6 @@ public class KevinGame implements Topic {
 	private static final String[] TIE_MESSAGES = { "Seems like we tied.", "Seems like we tied... again...",
 			"WHY DO WE KEEP TYING?", "Seriously stop copying me. We tied again?" };
 	private static final String[][] MESSAGES = { WINNING_MESSAGES, TIE_MESSAGES, LOSING_MESSAGES };
-
-	private static final List<String> moves = new ArrayList<String>(Arrays.asList("paper", "scissor", "rock"));
 
 	private int[] log;
 	private int invalidAngerLevel;
@@ -82,7 +81,7 @@ public class KevinGame implements Topic {
 				
 			    kevSay("Cya later alligator. You took the L.");
 			    BillyMain.print("You won " + log[2] + " times, lost " + log[0] + "times, and tied " + log[1] + " times.");
-				break;
+			    break;
 			}
 
 			if (input.equals("scissors")) input = "scissor"; // possibility user wants more than one scissor?
