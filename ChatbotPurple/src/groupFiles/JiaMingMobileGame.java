@@ -12,7 +12,7 @@ public class JiaMingMobileGame implements Topic {
 	static int rudeCounter=0; //if rudeCounter>1, then the program will shut down
 	
 	
-	static String[] returnToMyQuestion={"What do you like most about mobile games?","But what makes mobile games better than others?",
+	static String[] returnToMyQuestion={"What do you like most about mobile games?","What makes mobile games better than others?",
 			"What about gaming on laptop? They are pretty convenient too.","Do you like Nintendo DS too?","What about PC games?","What other genres do you like?",
 			"What's your favorite mobile game?","What genre of PC games like FPS or Multiplayer?","Which Nintendo DS game is your favorite?","Which PC game do you like the best?"};
 	// this array allows the bot to say the question again after it is interrupted by a question from the user
@@ -117,7 +117,7 @@ public class JiaMingMobileGame implements Topic {
 	private static void checkIfAskBotQuestion(int whereWeLeftOff){ // respond to possible questions asked by user
 		if(response.indexOf("?")>-1){ // have to use indexOf because no one puts a space before putting a question mark (ex. are you a bot ? vs are you a bot?)
 			if(BillyMain.findKeyword(response, "what", 0)>-1 && BillyMain.findKeyword(response, "you like", 0)>-1 && BillyMain.findKeyword(response, "mobile", 0)>-1 || BillyMain.findKeyword(response, "phone", 0)>-1){
-				String[] ans={"I like it because I like touching the screen with my fingers.","I like it because there are more interactions."};
+				String[] ans={"I like touching the screen with my fingers.","I like it because there are more interactions."};
 				System.out.println(ans[(int) (Math.random()*1)]);
 			}
 			else if(BillyMain.findKeyword(response, "ds", 0)>-1 && BillyMain.findKeyword(response, "you like", 0)>-1){
