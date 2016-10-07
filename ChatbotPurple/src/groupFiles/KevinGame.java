@@ -59,7 +59,7 @@ public class KevinGame implements Topic {
 	}
 
 	// wrapper of BillyMain.print
-	private static void kevSay(String s) {
+	private void kevSay(String s) {
 		BillyMain.print("KevBot: " + s);
 	}
 
