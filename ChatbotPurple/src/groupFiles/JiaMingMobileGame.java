@@ -116,7 +116,7 @@ public class JiaMingMobileGame implements Topic {
 	
 	private static void checkIfAskBotQuestion(int whereWeLeftOff){ // respond to possible questions asked by user
 		if(response.indexOf("?")>-1){ // have to use indexOf because no one puts a space before putting a question mark (ex. are you a bot ? vs are you a bot?)
-			if(BillyMain.findKeyword(response, "what", 0)>-1 && BillyMain.findKeyword(response, "you like", 0)>-1 && BillyMain.findKeyword(response, "mobile", 0)>-1 || BillyMain.findKeyword(response, "phone", 0)>-1){
+			if(BillyMain.findKeyword(response, "why", 0)>-1 || BillyMain.findKeyword(response, "what", 0)>-1 && BillyMain.findKeyword(response, "you like", 0)>-1 && BillyMain.findKeyword(response, "mobile", 0)>-1 || BillyMain.findKeyword(response, "phone", 0)>-1){
 				String[] ans={"I like touching the screen with my fingers.","I like it because there are more interactions."};
 				System.out.println(ans[(int) (Math.random()*1)]);
 			}
