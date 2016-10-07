@@ -57,7 +57,7 @@ public class AriqMultiplayer implements Topic {
 				}
 				MultiplayerResponse = BillyMain.getInput();
 
-				BillyMain.print("What other thing about multiplayer games do you want to talk about?");
+				BillyMain.print("Anything else you want to say about multiplayer games?");
 				MultiplayerResponse = BillyMain.getInput();
 				for (int k = 0; k < deny.length; k++) {
 					if (MultiplayerResponse.indexOf(deny[k]) >= 0) {
